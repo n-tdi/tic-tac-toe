@@ -2,18 +2,27 @@ package world.ntdi.tictactoe;
 
 import java.util.Scanner;
 
+/**
+ * Tic Tac Toe game.
+ */
 public class TicTacToe {
 
+    // Grid/board variables
     public GridSquare[][] grid;
     private final int COLS = 3;
     private final int ROWS = 3;
 
+    // Game logic variables
     public int totalTurns = 0;
     public static GameState gameState;
     public int winner = -1;
 
+    // External modules.
     private final Scanner in = new Scanner(System.in);
 
+    /**
+     * Constructor to setup game.
+     */
     public void setup() {
         grid = new GridSquare[COLS][ROWS];
         int position = 1;
@@ -51,6 +60,10 @@ public class TicTacToe {
         System.out.println(board);
     }
 
+    /**
+     * Called when it's a player's turn to make a move.
+     * If player is X, AI will play.
+     */
     public void makeMove() {
         if (getPlayer() == 'O') {
             boolean validChoice = false;
@@ -96,6 +109,9 @@ public class TicTacToe {
         }
     }
 
+    /**
+     * Called once game is over by winning or draw.
+     */
     public void gameOver() {
         drawBoard();
         System.out.println("\nGame over!");
@@ -108,6 +124,9 @@ public class TicTacToe {
         }
     }
 
+    /**
+     * Called when the game is no longer being setup and now playing.
+     */
     public void playGame() {
         while (gameState == GameState.RUNNING) {
             if (getPlayer() == 'O')
